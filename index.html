@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7 Mandell Hand Hygiene Lab</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-teal-700 text-white py-6 px-4 shadow-md text-center">
+    <div class="max-w-4xl mx-auto">
+      <span class="inline-block bg-teal-800 text-teal-200 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider mb-2">7 Mandell Quality Initiative</span>
+      <h1 class="text-3xl font-extrabold tracking-tight">Clean Hands, Safe Unit 🧼</h1>
+      <p class="text-teal-100 text-sm mt-1">Interactive Hand Hygiene & Bug Survival Guide</p>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 space-y-12">
+
+    <!-- MODULE 1: BUG SURVIVAL EXPLORER -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="p-2 bg-amber-100 text-amber-700 rounded-xl">
+          <i data-lucide="bug" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-slate-900">Module 1: How Long Do Bugs Survive?</h2>
+          <p class="text-xs text-slate-500">Select a pathogen or filter by surface to explore environmental persistence on 7 Mandell.</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex flex-wrap gap-2 mb-6">
+        <button onclick="filterBugs('all')" class="bug-btn bg-slate-900 text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:opacity-90 transition">All Bugs</button>
+        <button onclick="filterBugs('spore')" class="bug-btn bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-slate-200 transition">Spores / Hard-to-Kill</button>
+        <button onclick="filterBugs('bacterial')" class="bug-btn bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-slate-200 transition">Bacteria</button>
+        <button onclick="filterBugs('viral')" class="bug-btn bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-slate-200 transition">Viruses</button>
+      </div>
+
+      <!-- Bug Cards Grid -->
+      <div id="bug-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+    <!-- MODULE 2: INTERACTIVE ROOM MAP -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="p-2 bg-teal-100 text-teal-700 rounded-xl">
+          <i data-lucide="map-pin" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-slate-900">Module 2: The 7 Mandell Room Map</h2>
+          <p class="text-xs text-slate-500">Tap high-touch zones in the patient room to reveal key Hand Hygiene moments.</p>
+        </div>
+      </div>
+
+      <!-- Interactive Map Canvas -->
+      <div class="relative w-full aspect-[16/9] bg-slate-100 rounded-xl border-2 border-dashed border-slate-300 overflow-hidden flex items-center justify-center">
+        <!-- Background Room Sketch Layout -->
+        <div class="absolute inset-0 grid grid-cols-3 grid-rows-2 p-4 gap-2 opacity-20 pointer-events-none">
+          <div class="border-2 border-slate-400 rounded flex items-center justify-center font-bold text-slate-500">Entry Door</div>
+          <div class="border-2 border-slate-400 rounded flex items-center justify-center font-bold text-slate-500">Clean Supply</div>
+          <div class="border-2 border-slate-400 rounded flex items-center justify-center font-bold text-slate-500">Patient Bed</div>
+          <div class="border-2 border-slate-400 rounded flex items-center justify-center font-bold text-slate-500">Trash / Diaper</div>
+          <div class="border-2 border-slate-400 rounded flex items-center justify-center font-bold text-slate-500">IV / Lines</div>
+          <div class="border-2 border-slate-400 rounded flex items-center justify-center font-bold text-slate-500">Sink / Soap</div>
+        </div>
+
+        <!-- Hotspots -->
+        <!-- Door Hotspot -->
+        <button onclick="showMoment('door')" class="absolute top-[20%] left-[12%] transform -translate-x-1/2 -translate-y-1/2 group">
+          <span class="relative flex h-6 w-6">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-6 w-6 bg-teal-600 text-white text-xs font-bold items-center justify-center shadow-lg">1</span>
+          </span>
+          <span class="absolute left-1/2 -bottom-6 transform -translate-x-1/2 bg-slate-900 text-white text-[10px] px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">Threshold</span>
+        </button>
+
+        <!-- Pre-Procedure Hotspot -->
+        <button onclick="showMoment('lines')" class="absolute top-[35%] right-[20%] transform -translate-x-1/2 -translate-y-1/2 group">
+          <span class="relative flex h-6 w-6">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-6 w-6 bg-teal-600 text-white text-xs font-bold items-center justify-center shadow-lg">2</span>
+          </span>
+          <span class="absolute left-1/2 -bottom-6 transform -translate-x-1/2 bg-slate-900 text-white text-[10px] px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">Lines & Meds</span>
+        </button>
+
+        <!-- Dirty Task Hotspot -->
+        <button onclick="showMoment('dirty')" class="absolute bottom-[25%] left-[25%] transform -translate-x-1/2 -translate-y-1/2 group">
+          <span class="relative flex h-6 w-6">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-6 w-6 bg-amber-600 text-white text-xs font-bold items-center justify-center shadow-lg">3</span>
+          </span>
+          <span class="absolute left-1/2 -bottom-6 transform -translate-x-1/2 bg-slate-900 text-white text-[10px] px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">Dirty Exposure</span>
+        </button>
+
+        <!-- Post-Patient Hotspot -->
+        <button onclick="showMoment('exit')" class="absolute bottom-[25%] right-[25%] transform -translate-x-1/2 -translate-y-1/2 group">
+          <span class="relative flex h-6 w-6">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-6 w-6 bg-teal-600 text-white text-xs font-bold items-center justify-center shadow-lg">4</span>
+          </span>
+          <span class="absolute left-1/2 -bottom-6 transform -translate-x-1/2 bg-slate-900 text-white text-[10px] px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">Exit / Surroundings</span>
+        </button>
+      </div>
+
+      <!-- Hotspot Details Display Box -->
+      <div id="moment-card" class="mt-4 bg-teal-50 border border-teal-200 rounded-xl p-4 transition-all">
+        <h3 id="moment-title" class="font-bold text-teal-900 text-base">Select a Zone Above 📍</h3>
+        <p id="moment-desc" class="text-xs text-teal-800 mt-1">Click on any numbered point on the room map to view the specific hand hygiene expectations for that zone on 7 Mandell.</p>
+        <ul id="moment-bullets" class="mt-2 space-y-1 text-xs text-teal-900 list-disc list-inside hidden"></ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Script Logic -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Data for Bug Survival Explorer
+    const bugs = [
+      {
+        name: "C. difficile (Spores)",
+        category: "spore",
+        survival: "> 5 Months",
+        surface: "Dry inanimate surfaces",
+        action: "Soap & water ONLY (Purell does not kill spores!). Wash thoroughly.",
+        badge: "bg-red-100 text-red-700"
+      },
+      {
+        name: "MRSA (S. aureus)",
+        category: "bacterial",
+        survival: "7 days up to 5 years",
+        surface: "Foam mattresses, synthetic fibers, ceramic floors",
+        action: "Purell or soap & water prior to direct patient contact or line access.",
+        badge: "bg-amber-100 text-amber-700"
+      },
+      {
+        name: "VRE (Enterococcus)",
+        category: "bacterial",
+        survival: "5 days to 5 years",
+        surface: "Office paper, dry surfaces, eggcrate foam",
+        action: "Clean hands after touching patient surroundings (even charts/computers!).",
+        badge: "bg-amber-100 text-amber-700"
+      },
+      {
+        name: "Norovirus",
+        category: "viral",
+        survival: "8 hours to 2 weeks",
+        surface: "Dry inanimate surfaces, door handles",
+        action: "Meticulous friction with soap & water or Purell on entry/exit.",
+        badge: "bg-purple-100 text-purple-700"
+      }
+    ];
+
+    // Render Bug Cards
+    function renderBugs(filteredBugs) {
+      const grid = document.getElementById('bug-grid');
+      grid.innerHTML = '';
+      filteredBugs.forEach(bug => {
+        const card = document.createElement('div');
+        card.className = 'border border-slate-200 rounded-xl p-4 bg-slate-50/50 hover:bg-white hover:shadow-md transition';
+        card.innerHTML = `
+          <div class="flex items-start justify-between">
+            <h3 class="font-bold text-slate-800 text-sm">${bug.name}</h3>
+            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full ${bug.badge}">${bug.survival}</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1"><strong>Common Surfaces:</strong> ${bug.surface}</p>
+          <div class="mt-3 bg-white border border-slate-100 rounded-lg p-2.5 text-xs text-slate-700">
+            <strong class="text-teal-700">Unit Protocol:</strong> ${bug.action}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter Bug Cards
+    function filterBugs(category) {
+      if (category === 'all') {
+        renderBugs(bugs);
+      } else {
+        renderBugs(bugs.filter(b => b.category === category));
+      }
+    }
+
+    // Data for Room Map Hotspots
+    const moments = {
+      door: {
+        title: "Zone 1: Entry Threshold",
+        desc: "Perform hand hygiene every time you enter a 7 Mandell patient room.",
+        bullets: [
+          "Purell upon room entry before touching patient or environment",
+          "Includes quick pop-ins or delivering supplies/meds"
+        ]
+      },
+      lines: {
+        title: "Zone 2: Clean / Pre-Procedure Zone",
+        desc: "Must perform hand hygiene immediately prior to clean or aseptic tasks.",
+        bullets: [
+          "Prior to accessing IV or Central Lines (CVL)",
+          "Before donning gloves for procedures or assessments",
+          "Prior to preparing oral or IV medications"
+        ]
+      },
+      dirty: {
+        title: "Zone 3: Post-Dirty Task Exposure",
+        desc: "Hand hygiene required immediately after body fluid exposure risks.",
+        bullets: [
+          "After changing diapers or suctioning (oral/nasal)",
+          "After draining/emptying urinary catheter or G-tube/J-tube",
+          "Clean hands before touching clean surfaces in the room or med room"
+        ]
+      },
+      exit: {
+        title: "Zone 4: Exit & Surroundings",
+        desc: "Perform hand hygiene when leaving the room or moving between patients.",
+        bullets: [
+          "After glove removal",
+          "After touching bed rails, monitors, or room furniture",
+          "Before entering the clean supply room or medication station"
+        ]
+      }
+    };
+
+    // Show Moment Details on Hotspot Click
+    function showMoment(key) {
+      const data = moments[key];
+      document.getElementById('moment-title').innerText = data.title;
+      document.getElementById('moment-desc').innerText = data.desc;
+      
+      const ul = document.getElementById('moment-bullets');
+      ul.innerHTML = '';
+      data.bullets.forEach(b => {
+        const li = document.createElement('li');
+        li.innerText = b;
+        ul.appendChild(li);
+      });
+      ul.classList.remove('hidden');
+    }
+
+    // Initial Render
+    renderBugs(bugs);
+  </script>
+</body>
+</html>
